@@ -5,6 +5,7 @@ import './Weather.css';
 export default function Weather(props) {
     const[ready, setReady] = useState(false);
     const[weatherData, setWeatherData] = useState({});
+
     function handleResponse(response){
         console.log(response.data);
         setWeatherData({
@@ -20,7 +21,7 @@ export default function Weather(props) {
         setReady(true);
     }
 
-    if (weatherData.ready){
+    if (ready){
         return (
         <div className="Weather">
             <form>
