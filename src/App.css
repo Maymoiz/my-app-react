@@ -1,7 +1,10 @@
 .App h1{
   text-align: center;
-  color: whitesmoke;
+  
 }
-body{
-  background-color: lightslategray;
+.App footer {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+  
 }
