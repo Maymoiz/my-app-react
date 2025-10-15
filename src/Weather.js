@@ -11,6 +11,7 @@ export default function Weather() {
                             type="search"
                             placeholder="Enter a city..."
                             className="form-control"
+                            autoFocus="on"
                         />
                     </div>
                     <div className="col-3">
@@ -20,17 +21,20 @@ export default function Weather() {
                     </div>
                 </div>
             </form>
-            <h1>Pretoria</h1>
+            <h1 className="mt-3">Pretoria</h1>
             <ul>
                 <li>Wednesday 13:00</li>
                 <li>Sunny</li>
             </ul>
-            <div className="row">
+            <div className="row mt-3">
                 <div className="col-6">
+                    <div className="clearfix">
                     <img src="https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/SunnyDayV3.svg"
-                        alt="Sunny" />
-                    <span className="temperature">25</span>
+                        alt="Sunny" className="float-left" />
+                    <span className="temperature text-black">25</span>
                     <span className="units">°C | °F</span>
+
+                    </div>
                 </div>
                 <div className="col-6">
                     <ul>

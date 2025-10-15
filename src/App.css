@@ -1,6 +1,13 @@
-
+.App{
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
 .App footer {
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
   margin-top: 10px;
   
