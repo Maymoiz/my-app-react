@@ -1,8 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
 import './Weather.css';
 
 export default function Weather() {
-    return (
+    const[ready, setReady] = useState(false);
+    const[weatherData, setWeatherData] = useState({});
+    function handleResponse(response){
+        console.log(response.data);
+        setWeatherData({
+            ready: true,
+            temperature: Math.round(response.data.temperature.current),
+            city: response.data.city,
+            description: response.data.condition.description,
+            humidity: response.data.temperature.humidity,
+            date: new Date(response.data.time * 1000).toLocaleString(),
+            wind: Math.round(response.data.wind.speed),
+            icon_url:"https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/D200PartlySunnyV2.svg",
+        });
+        setReady(true);
+    }
+
+    if (weatherData.ready){
+        return (
         <div className="Weather">
             <form>
                 <div className="row">
@@ -21,29 +40,37 @@ export default function Weather() {
                     </div>
                 </div>
             </form>
-            <h1 className="mt-3">Pretoria</h1>
+            <h1 className="mt-3">{weatherData.city}</h1>
             <ul>
-                <li>Wednesday 13:00</li>
-                <li>Sunny</li>
+                <li>{weatherData.date}</li>
+                <li className="text-capitalize">{weatherData.description}</li>
             </ul>
             <div className="row mt-3">
                 <div className="col-6">
                     <div className="clearfix">
-                    <img src="https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/SunnyDayV3.svg"
-                        alt="Sunny" className="float-left" />
-                    <span className="temperature text-black">25</span>
+                    <img src={weatherData.icon_url}
+                        alt={weatherData.description} className="float-left"/>
+                    <span className="temperature text-black">{weatherData.temperature}</span>
                     <span className="units">°C | °F</span>
 
                     </div>
                 </div>
                 <div className="col-6">
                     <ul>
-                        <li>Humidity: 60%</li>
-                        <li>Wind: 10 km/h</li>
-                        <li>Precipitation: 0%</li>
+                        <li>Humidity: {weatherData.humidity}%</li>
+                        <li>Wind: {weatherData.wind} km/h</li>
                     </ul>
                 </div>
             </div>
         </div>
-    )
+    );
+
+ }else{
+     const apiKey = "6b0de8c4f230fd2bf4t68daf5046oe9a";
+    let city = "Pretoria";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading...";
+ }   
   }
