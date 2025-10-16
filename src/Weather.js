@@ -18,7 +18,7 @@ export default function Weather(props) {
             humidity: response.data.temperature.humidity,
             date: new Date(response.data.time * 1000).toLocaleString(),
             wind: Math.round(response.data.wind.speed),
-            icon_url:"https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/D200PartlySunnyV2.svg",
+            icon_url:response.data.condition.icon_url,
         });
         setReady(true);
     }
