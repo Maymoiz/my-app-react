@@ -15,7 +15,7 @@ export default function WeatherInfo(props){
                         <div className="clearfix">
                        <WeatherIcon code={props.data.icon} />
                         <span className="temperature text-black">{props.data.temperature}</span>
-                        <span className="units">°C | °F</span>
+                        <span className="units text-black">°C</span>
                            </div>
                     </div>
                     <div className="col-6">
