@@ -20,6 +20,8 @@ export default function Weather(props) {
             date: new Date(response.data.time * 1000).toLocaleString(),
             wind: Math.round(response.data.wind.speed),
             icon:response.data.condition.icon_url,
+            lon: Math.round(response.data.coordinates.longitude),
+            lat: Math.round(response.data.coordinates.latitude)
         });
         setReady(true);
     }
@@ -58,8 +60,12 @@ function handleSubmit(event){
                     </div>
                 </div>
             </form>
-            <WeatherInfo data={weatherData} />
-            <WeatherForecast />
+            <div>
+            <WeatherInfo data={weatherData}  />
+            </div>
+            <div>
+            <WeatherForecast longitude={weatherData.lon} latitude={weatherData.lat}/>
+            </div>
             </div>
         ); 
      }else{
